@@ -31,7 +31,7 @@ ENV SPARK_VERSION 2.4.6
 ENV SPARK_PACKAGE spark-${SPARK_VERSION}-bin-hadoop2.7
 ENV SPARK_HOME /usr/local/spark-${SPARK_VERSION}
 ENV CLASSPATH ${CLASSPATH}:${HADOOP_HOME}/lib/*
-ENV PYTHONPATH ${SPARK_HOME}/python/:${PYTHONPATH}
+ENV PYTHONPATH ${SPARK_HOME}/python/:${SPARK_HOME}/python/lib/py4j-0.10.7-src.zip:${PYTHONPATH}
 ENV PATH $PATH:${SPARK_HOME}/bin:$SPARK_HOME/sbin
 ENV PYSPARK_PYTHON /usr/bin/python
 
@@ -47,7 +47,7 @@ RUN apt-get update \
     && apt-get -y install software-properties-common \
     && add-apt-repository ppa:deadsnakes/ppa \
     && apt-get update \
-    && apt-get -y install openjdk-8-jdk python3.7 python3-pip procps hostname \
+    && apt-get -y install openjdk-8-jdk python3.7 python3-pip python3.7-venv procps hostname \
     && ln -s /usr/bin/python3.7 /usr/bin/python \
     # Scala install
     && curl -s --retry 3 \
